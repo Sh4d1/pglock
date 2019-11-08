@@ -172,7 +172,7 @@ func (c *Client) tryAcquire(ctx context.Context, l *Lock) error {
 	if err != nil {
 		return err
 	}
-	ctx, cancel := context.WithCancel(ctx)
+	ctx, cancel := context.WithCancel(context.Background())
 	l.heartbeatCancel = cancel
 	l.heartbeatWG.Add(1)
 	go c.heartbeat(ctx, l)
